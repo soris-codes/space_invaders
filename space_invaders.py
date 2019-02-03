@@ -156,7 +156,7 @@ while True:
             # Change enemy directions
             enemyspeed *= -1
            
-      # Check for collision between bullet and enemy
+        # Check for collision between bullet and enemy
         if isCollision(bullet, enemy):
             # Play explosion sound
             play_sound("explosion.wav")
