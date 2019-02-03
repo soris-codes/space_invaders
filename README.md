@@ -6,7 +6,9 @@ The version_one branch will contain my progress as I follow the tutorial to buil
 
 My goal will be to refactor the code to utilize classes. 
 
+
 Techniques/Tools Used:
 - Python 3
 - Object Oriented Programming
 - Turtle Graphics
+
