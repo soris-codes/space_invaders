@@ -1,10 +1,10 @@
 from classes.player import Bullet, Player
 from classes.border import Border
 from classes.enemy import Enemy
+from classes.score import Score
 import turtle
-import os
 import math
-import platform
+import time
 
 class Game(turtle.Turtle):
 
@@ -12,7 +12,7 @@ class Game(turtle.Turtle):
 
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.score = 0
+        self.score = Score()
         self.player = Player()
         self.enemies = []
     
@@ -21,12 +21,17 @@ class Game(turtle.Turtle):
         screen = turtle.Screen()
         screen.bgcolor("black")
         screen.title("Space Invaders")
+        # Display splash screen for 5 seconds
+        # screen.bgpic("splash.gif")
+        # time.sleep(5)
         screen.bgpic("space_invaders_background.gif")
         # Draw border
         border = Border()
         border.draw_border()
         # Create enemies
         self.create_enemies()
+        # Draw score
+        self.score.draw_score()
     
     def create_enemies(self):
         # Add enemies to the list
@@ -35,34 +40,12 @@ class Game(turtle.Turtle):
     
     def isCollision(self, t1, t2):
         distance = math.sqrt(math.pow(t1.xcor()-t2.xcor(),2) + (math.pow(t1.ycor() - t2.ycor(),2)))
-        if distance < 20:
-            # Play explosion sound
-            self.play_sound("explosion.wav")
-            return True
-        else:
-            return False
-
-    def update_displayed_score(self):
-        self.score += 10
-        self.clear()
-        self.write(f"Score: {self.score}", False, align="left", font=('Arial', 14, 'normal'))
-    
-    def play_sound(self, sound_file):
-        # Windows
-        if platform.system() == 'Windows':
-            import winsound
-            winsound.PlaySound(sound_file, winsound.SND_ASYNC)
-        # Linux
-        elif platform.system() == "Linux":
-            os.system(f"aplay -q {sound_file}&")
-        # Mac
-        else:
-            os.system(f"afplay {sound_file}&")
+        return True if distance < 20 else False
     
     def play_game(self):  
       # Set up game screen, border, and enemies
       self.setup()
-  
+     
       # Define keyboard bindings
       turtle.listen()
       turtle.onkey(self.player.move_left, "Left")
@@ -87,15 +70,19 @@ class Game(turtle.Turtle):
 
               # Check for collision between bullet and enemy
               if self.isCollision(self.player.bullet, enemy):
+                  # Play explosion sound
+                  self.player.play_sound("explosion.wav")
                   # Reset the bullet
                   self.player.bullet.reset()
                   # Reset enemy position
                   enemy.reset_position()
                   # Update score
-                  self.update_displayed_score()
+                  self.score.update_score()
 
               # Check for collison between enemy and player
-              if self.isCollision(self.player, enemy):
+              if self.isCollision(self.player, enemy) or enemy.ycor() < -250:
+                  # Play explosion sound
+                  self.player.play_sound("explosion.wav")
                   # Game is over
                   self.player.hideturtle()
                   enemy.hideturtle()

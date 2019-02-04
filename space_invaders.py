@@ -175,11 +175,14 @@ while True:
             scorestring = f"Score: {score}"
             score_pen.write(scorestring, False, align="left", font=('Arial'))
 
-        # Check for collison between enemy and player
-        if isCollision(player, enemy):
+        # Check for collison between enemy and player or invasion
+        if isCollision(player, enemy) or enemy.ycor() < -250:
             play_sound("explosion.wav")
             player.hideturtle()
             enemy.hideturtle()
+            screen.bgcolor("black")
+            screen.title("Game Over")
+            screen.bgpic("gameover.gif")
             print("Game Over!")  
             break
   
@@ -199,4 +202,4 @@ while True:
 
 
 
-delay = input("Press any ley to exit...")
+delay = input("Press any key to exit...")

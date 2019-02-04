@@ -8,6 +8,7 @@ class Enemy(turtle.Turtle):
     
     def __init__(self):
         turtle.Turtle.__init__(self)
+        turtle.register_shape("invader.gif")
         self.color("green")
         self.shape("invader.gif")
         self.penup()
