@@ -2,7 +2,9 @@
 
 Inspired by a <a href="https://www.youtube.com/watch?v=QvtlEj_T55o&list=PLlEgNdBJEO-lqvqL5nNNZC6KoRdSrhQwK"> Python Game Tutorial</a> from Christian Thompson  
 
-This version utilizes classes.
+space_invaders.py takes a functional approach
+
+space_invaders_2.py utilizes classes
 
 Techniques/Tools Used:
 - Python 3
