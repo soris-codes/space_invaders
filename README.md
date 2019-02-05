@@ -2,9 +2,7 @@
 
 Inspired by a <a href="https://www.youtube.com/watch?v=QvtlEj_T55o&list=PLlEgNdBJEO-lqvqL5nNNZC6KoRdSrhQwK"> Python Game Tutorial</a> from Christian Thompson  
 
-The version_one branch will contain my progress as I follow the tutorial to build the game without using classes.
-
-The current final version utilizes classes.
+This version utilizes classes.
 
 Techniques/Tools Used:
 - Python 3
@@ -14,4 +12,5 @@ Techniques/Tools Used:
 Future to-do's: 
 - Test on Windows and Linux systems - sound effects
 - Refactor code 
+- Allow player to have more bullets?
 
